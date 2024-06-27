@@ -1,23 +1,12 @@
 import { useRef, useState } from "react"
+import { useNavigate } from "react-router"
 
 export const Recorder = () => {
   const [isRecording, setIsRecording] = useState(false)
-  const [recordingTime, setRecordingTime] = useState(0)
   const audioChunksRef = useRef([])
   const mediaRecorderRef = useRef(null)
-  const timerRef = useRef(null)
   const [transcription, setTranscription] = useState()
-
-  const startTimer = () => {
-    timerRef.current = setInterval(() => {
-      setRecordingTime((prevtime) => prevtime + 1)
-    }, 1000)
-  }
-
-  const stopTimer = () => {
-    clearInterval(timerRef.current)
-    setRecordingTime(0)
-  }
+  const navigate = useNavigate()
 
   const handleStopRecording = () => {
     if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
@@ -39,11 +28,9 @@ export const Recorder = () => {
       }
 
       mediaRecorder.onstart = () => {
-        startTimer()
       }
 
       mediaRecorder.onstop = async () => {
-        stopTimer()
         await handleUpload(audioChunksRef.current) // Subir los chunks después de detener la grabación
         audioChunksRef.current = []; // Resetear los chunks de audio
         await getTranscription()
@@ -54,12 +41,6 @@ export const Recorder = () => {
     } catch (error) {
       console.error("No se pudo grabar", error)
     }
-  }
-
-  const formatTime = (seconds) => {
-    const minutes = Math.floor(seconds / 60)
-    const remainingSeconds = seconds % 60
-    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`
   }
 
   const handleUpload = async (audioChunks) => {
@@ -93,13 +74,15 @@ export const Recorder = () => {
 
     const responseData = await response.json()
     setTranscription(responseData)
+    if (responseData.transcription === 'no se pudo entender el audio') {
+      alert("No se entendió el audio")
+      return
+    }
+    navigate('/main/' + responseData.transcription)
   }
 
   return (
     <>
-      <div>
-        <h2>Transcribir Audio</h2>
-      </div>
       {/* <div>Tiempo transcurrido { formatTime(recordingTime) }</div> */}
       <div>
         {
