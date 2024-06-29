@@ -1,5 +1,8 @@
 import { useRef, useState } from "react"
 import { useNavigate } from "react-router"
+import Fab from '@mui/material/Fab'
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice'
+import MicOffIcon from '@mui/icons-material/MicOff';
 
 export const Recorder = () => {
   const [isRecording, setIsRecording] = useState(false)
@@ -87,17 +90,13 @@ export const Recorder = () => {
       <div>
         {
           isRecording ? (
-            <button
-              onClick={ handleStopRecording }
-            >
-              Detener
-            </button>
+            <Fab onClick={ handleStopRecording } color="primary">
+              <KeyboardVoiceIcon/>
+            </Fab>
           ) : (
-            <button
-              onClick={ handleStartRecording }
-            >
-              Hablar
-            </button>
+            <Fab onClick={ handleStartRecording } color="error">
+              <MicOffIcon/>
+            </Fab>
           )
         }
         {

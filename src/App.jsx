@@ -7,6 +7,7 @@ import { Ingresar } from './pages/ingresar/Ingresar.jsx'
 import { RecorderLayout } from './components/RecorderLayout.jsx'
 import { CrearProyecto } from './pages/crear/CrearProyecto.jsx'
 import { Home } from './pages/inicio/Home.jsx'
+import { ElegirCategoria } from './pages/categorias/ElegirCategoria.jsx'
 import './App.css'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <Routes>
       <Route path='/registro' element={ <Registro /> } />
       <Route path='/ingresar' element={ <Ingresar /> } />
+      <Route path='/elegir-categoria' element={ <ElegirCategoria /> } />
       <Route path='/' element={ <Main /> } />
       <Route path='/main' element={ <RecorderLayout /> }>
         <Route path='/main/buscar' element={ <Buscar /> }/>
