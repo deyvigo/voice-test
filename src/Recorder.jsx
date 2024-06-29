@@ -87,14 +87,19 @@ export const Recorder = () => {
   return (
     <>
       {/* <div>Tiempo transcurrido { formatTime(recordingTime) }</div> */}
-      <div>
+      <div style={{ position: 'fixed', right: 20, bottom: 20 }}>
         {
           isRecording ? (
-            <Fab onClick={ handleStopRecording } color="primary">
+            <Fab 
+            onClick={ handleStopRecording } 
+            color="primary">
               <KeyboardVoiceIcon/>
             </Fab>
           ) : (
-            <Fab onClick={ handleStartRecording } color="error">
+            <Fab 
+            onClick={ handleStartRecording } 
+            color="error"
+            >
               <MicOffIcon/>
             </Fab>
           )
