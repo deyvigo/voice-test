@@ -21,7 +21,31 @@ export const Ingresar = () => {
   useEffect(() => {
     if (data) {
       localStorage.setItem('token', data.token)
-      navigate("/main/inicio")
+      const API = 'http://127.0.0.1:5000/user/first/login'
+      fetch(API, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${data.token}`
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        return response.json()
+      })
+      .then(responseData => {
+        if (responseData.data && responseData.data.length === 0) {
+          navigate("/elegir-categoria")
+        } else {
+          navigate("/main/inicio")
+        }
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      })
+      // navigate("/main/inicio")
     }
   }, [data])
 
