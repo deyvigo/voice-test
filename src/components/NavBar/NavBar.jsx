@@ -34,7 +34,7 @@ export const NavBar = () => {
     }
 
     return (
-        <AppBar position="fixed">
+        <AppBar position="static">
             <Toolbar>
                 <IconButton
                     size="large"

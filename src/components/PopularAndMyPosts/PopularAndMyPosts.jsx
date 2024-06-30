@@ -45,7 +45,7 @@ export const PopularAndMyPosts = () => {
     const [value, setValue] = useState(0);
 
     return (
-        <Paper sx={{ p: 3, maxWidth: 400}}>
+        <Paper sx={{ p: 3, width: { xs: '100%', sm: '70%' }}}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} aria-label="basic tabs example">
                     <Tab label="Proyectos Populares" onClick={() => setValue(0)}/>

@@ -6,13 +6,13 @@ import { PopularAndMyPosts } from "../../components/PopularAndMyPosts/PopularAnd
 
 export const Home = () => {
   return (
-    <Container sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '100vh'}}>
-        <Grid container>      
-          <Grid item xs={12} sm={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+    <Container sx={{ mt: 5, px: { xs: 2, sm: 3, md: 4 }, maxWidth: 'lg' }}>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', gap: 3, justifyContent: 'center' }}>
             <PersonalInfo />
             <ActualCoins />
           </Grid>
-          <Grid item xs={12} sm={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+          <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', gap: 3, my: { xs: 2, md: 0 }, alignItems: 'center', justifyContent: 'center'}}>
             <PopularAndMyPosts />
           </Grid>
         </Grid>
