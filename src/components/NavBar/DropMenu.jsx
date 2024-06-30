@@ -14,7 +14,7 @@ export const DropMenu = ({ anchorEl, open, handleMenuClose }) => {
             open={open}
             onClose={handleMenuClose}
             anchorOrigin={{
-                vertical: 'top',
+                vertical: 'bottom',
                 horizontal: 'left',
             }}
             transformOrigin={{
