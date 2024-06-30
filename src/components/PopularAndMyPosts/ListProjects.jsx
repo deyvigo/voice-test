@@ -7,8 +7,8 @@ export const ListProjects = ({ proyects }) => {
     return (
         <>
             <List sx={{ maxHeight: 440, overflow: 'auto' }}>
-                {proyects.map((proyect) => (
-                    <ListItem>
+                {proyects.map((proyect, index) => (
+                    <ListItem key={index}>
                         <ListItemButton>
                             <ListItemText primary={proyect.name} secondary={proyect.likes} />
                         </ListItemButton>

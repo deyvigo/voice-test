@@ -87,7 +87,7 @@ export const Recorder = () => {
   return (
     <>
       {/* <div>Tiempo transcurrido { formatTime(recordingTime) }</div> */}
-      <div style={{ position: 'fixed', right: 20, bottom: 20, zIndex: 100 }}>
+      <div style={{ position: 'fixed', right: 20, bottom: 20, zIndex: 1 }}>
         {
           isRecording ? (
             <Fab 

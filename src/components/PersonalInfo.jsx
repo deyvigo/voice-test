@@ -9,14 +9,14 @@ import { useState } from 'react';
 
 export const PersonalInfo = () => {
 
-    const [saved , setSaved] = useState(true)
+    const [saved , setSaved] = useState(false)
 
     const saveChanges = () => {
         setSaved(!saved)
     }
 
     return (
-        <Paper sx={{ p: 3, maxWidth: 600, mx: 'auto'}}>
+        <Paper sx={{ p: 3, maxWidth: 500, mx: 'auto'}}>
             <Grid container>
                 <Grid item xs={12}>
                     <Typography variant="h5" component="h1" gutterBottom sx={{ textAlign: 'center'}}>Información personal</Typography>
@@ -39,10 +39,6 @@ export const PersonalInfo = () => {
                         <Typography variant="body2" component="p">XXXXXXXX</Typography>
                     </Box>
                     <Box>
-                        <Typography variant="body1" component="p"><strong>PAYPAL: </strong></Typography>
-                        <Typography variant="body2" component="p">XXXXXXXX</Typography>
-                    </Box>
-                    <Box>
                         <Typography variant="body1" component="p"><strong>LINKEDIN: </strong></Typography>
                         <Typography variant="body2" component="p">XXXXXXXX</Typography>
                     </Box>
@@ -53,7 +49,7 @@ export const PersonalInfo = () => {
                     <TextField sx={{ width: '100%'}} multiline rows={3} disabled={!saved}/>
                     <Button variant="contained" sx={{ width: '100%', mt: 2}}
                         onClick={saveChanges}>
-                        {saved? 'Actualizar' : 'Guardar'}
+                        {saved? 'Guardar' : 'Actualizar'}
                     </Button>
                 </Grid>
             </Grid>

@@ -22,17 +22,6 @@ export const NavBar = () => {
         setAnchorEl(null);
     };
 
-    const name = () => {
-        switch (actualLocation) {
-            case '/main/buscar':
-                return 'Busqueda de proyecto';
-            case '/main/crear':
-                return 'Crea un proyecto';
-            default:
-                return 'Inicio';
-        }
-    }
-
     return (
         <AppBar position="static">
             <Toolbar>
@@ -48,9 +37,6 @@ export const NavBar = () => {
                 </IconButton>
                 <Typography variant="h6" component="span" sx={{ flexGrow: 1 }}>
                     CROWDFUNDING
-                </Typography>
-                <Typography variant="h6" component="span">
-                    {name()}
                 </Typography>
                 <DropMenu anchorEl={anchorEl} open={open} handleMenuClose={handleMenuClose}/>
             </Toolbar>
