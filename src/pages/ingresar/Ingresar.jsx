@@ -1,15 +1,32 @@
 import { TextField, Button, Container, Box, Typography} from '@mui/material';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { useFetch } from '../../hooks/useFetch';
 
 export const Ingresar = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const [loginData, setLoginData] = useState(null)
+  const API_URL = 'http://127.0.0.1:5000/login'
   const navigate = useNavigate();
 
-  const handleLogin = handleSubmit((data) => {
-    console.log(data);
-    //primero la logica de comprobación del login
-    navigate('/home');
+  const { data, loading, error } = useFetch(loginData ? API_URL : null, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(loginData)
+  })
+
+  useEffect(() => {
+    if (data) {
+      localStorage.setItem('token', data.token)
+      navigate("/main/inicio")
+    }
+  }, [data])
+
+  const handleLogin = handleSubmit((formData) => {
+    setLoginData(formData)
   });
 
   return (

@@ -40,8 +40,7 @@ const mp = [
     }
 ]
 
-export const PopularAndMyPosts = () => {
-
+export const PopularAndMyPosts = ({ projects }) => {
     const [value, setValue] = useState(0);
 
     return (
@@ -52,7 +51,7 @@ export const PopularAndMyPosts = () => {
                     <Tab label="Mis Proyectos" onClick={() => setValue(1)}/>
                 </Tabs>
             </Box>
-            <ListProjects proyects={value === 0 ? pp : mp}/>
+            <ListProjects proyects={value === 0 ? pp : mp} projects={ projects }/>
         </Paper>
     )
 }
