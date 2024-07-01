@@ -6,10 +6,12 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { useState } from 'react';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 export const PersonalInfo = ({ name, lastName, username, createdDate, linkedin, description }) => {
 
     const [saved , setSaved] = useState(false)
+    const [mLinkedin, setMLinkedin] = useState(false)
 
     const saveChanges = () => {
         setSaved(!saved)
@@ -47,13 +49,23 @@ export const PersonalInfo = ({ name, lastName, username, createdDate, linkedin, 
                     </Box>
                     <Box>
                         <Typography variant="body1" component="p"><strong>LINKEDIN: </strong></Typography>
-                        <Typography variant="body2" component="p">{ linkedin }</Typography>
+                        {
+                            mLinkedin
+                            ? <TextField value={ linkedin } sx={{ width: '80%'}}/>
+                            :   <Box><a href={ linkedin ? linkedin : '#' }>
+                                    <LinkedInIcon sx={{width: 50, height: 50, color: '#0e76a8'}}/>
+                                </a></Box>
+                        }   
+                        <Button variant="contained" sx={{mt: 1}}
+                            onClick={() => setMLinkedin(!mLinkedin)}>
+                            {mLinkedin? 'Guardar' : 'Actualizar'}
+                        </Button>
                     </Box>
                 </Grid>
                 <Grid item xs={6} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignContent={'center'}>
                     <Avatar sx={{ width: 150, height: 150, alignSelf: 'center' }} src="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
                     <Typography variant="body2" component="p">Descripción:</Typography>
-                    <TextField value={ description ? description : '' } sx={{ width: '100%'}} multiline rows={3} disabled={!saved}/>
+                    <TextField  sx={{ width: '100%'}} multiline rows={3} disabled={!saved} value={description}/>
                     <Button variant="contained" sx={{ width: '100%', mt: 2}}
                         onClick={saveChanges}>
                         {saved? 'Guardar' : 'Actualizar'}
