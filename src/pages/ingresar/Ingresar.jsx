@@ -45,13 +45,12 @@ export const Ingresar = () => {
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
       })
-      // navigate("/main/inicio")
     }
   }, [data])
 
   const handleLogin = handleSubmit((formData) => {
     setLoginData(formData)
-  });
+  })
 
   return (
     <Container maxWidth="xs">

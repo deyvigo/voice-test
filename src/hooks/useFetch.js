@@ -22,7 +22,9 @@ export const useFetch = (url, options) => {
         setLoading(false)
       }
     }
-    fetchData()
+    if (url) {
+      fetchData()
+    }
   }, [url])
 
   return {
