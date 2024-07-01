@@ -8,6 +8,7 @@ import { CrearProyecto } from './pages/crear/CrearProyecto.jsx'
 import { Home } from './pages/inicio/Home.jsx'
 import { ElegirCategoria } from './pages/categorias/ElegirCategoria.jsx'
 import { VistaProyecto } from './pages/vista/VistaProyecto.jsx'
+import { Recarga } from './pages/recargar/Recarga.jsx'
 import './App.css'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/main/crear' element={ <CrearProyecto /> }/>
         <Route path='/main/inicio' element={ <Home /> }/>
         <Route path='/main/pruebavista' element={ <VistaProyecto /> }/>
+        <Route path='/main/recargar' element={ <Recarga/> }/>
       </Route>
     </Routes>
     </>
