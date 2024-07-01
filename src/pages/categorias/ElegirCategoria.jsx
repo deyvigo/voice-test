@@ -1,6 +1,6 @@
 import { Container, Grid, Typography, Paper, ButtonBase, Box, Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 
 export const ElegirCategoria = () => {
@@ -8,6 +8,7 @@ export const ElegirCategoria = () => {
   const API_URL = 'http://127.0.0.1:5000/get/all/category'
   const [categories, setCategories] = useState(null)
   const { data: dataCategories, loading, error } = useFetch(API_URL)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (dataCategories) {
@@ -44,7 +45,7 @@ export const ElegirCategoria = () => {
       return response.json()
     })
     .then(data => {
-      console.log(data)
+      navigate("/main/inicio")
     })
     .catch(err => {
       console.error('Error', err)
