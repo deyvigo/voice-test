@@ -1,3 +1,4 @@
+import React from 'react';
 import { Routes, Route } from 'react-router'
 import { Buscar } from './pages/buscar/Buscar.jsx'
 import { Main } from './pages/main/Main.jsx'
@@ -5,6 +6,7 @@ import { Registro } from './pages/registro/Registro.jsx'
 import { Ingresar } from './pages/ingresar/Ingresar.jsx'
 import { RecorderLayout } from './components/RecorderLayout.jsx'
 import { CrearProyecto } from './pages/crear/CrearProyecto.jsx'
+import { Favoritos } from './pages/favoritos/Favoritos.jsx'
 import { Home } from './pages/inicio/Home.jsx'
 import { ElegirCategoria } from './pages/categorias/ElegirCategoria.jsx'
 import { VistaProyecto } from './pages/vista/VistaProyecto.jsx'
@@ -25,6 +27,7 @@ function App() {
         <Route path='/main/inicio' element={ <Home /> }/>
         <Route path='/main/pruebavista' element={ <VistaProyecto /> }/>
         <Route path='/main/recargar' element={ <Recarga/> }/>
+        <Route path='/main/favoritos' element={ <Favoritos/> }/>
       </Route>
     </Routes>
     </>
