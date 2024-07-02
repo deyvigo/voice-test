@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 
 
 //datos falsos
-const posts = [
+const postsFake = [
   { title: 'Post 1', description: 'Description 1', image: 'https://via.placeholder.com/150' },
   { title: 'Post 2', description: 'Description 2', image: 'https://via.placeholder.com/150' },
   { title: 'Post 3', description: 'Description 3', image: 'https://via.placeholder.com/150' },
@@ -21,7 +21,7 @@ const posts = [
 
 const POSTS_PER_PAGE = 6;
 
-export const PaginatedPosts = ({ posts }) => {
+export const PaginatedPosts = ({ posts = [], resultados }) => {
   const [page, setPage] = useState(1);
   const count = Math.ceil(posts.length / POSTS_PER_PAGE);
 
@@ -36,9 +36,9 @@ export const PaginatedPosts = ({ posts }) => {
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 4 }}>
       <Grid container spacing={2} justifyContent="center">
         {
-          posts && posts.map(({id_project, title, description}) => (
-            <Grid item xs={12} sm={6} md={4} key={id_project}>
-              <PostCard title={title} description={description} image={'https://via.placeholder.com/150'} />
+          resultados && resultados.map(({id_project, title, description}, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <PostCard idProject={id_project} title={title} description={description} image={'https://via.placeholder.com/150'} />
             </Grid>  
           ))
         }
