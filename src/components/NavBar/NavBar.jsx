@@ -1,16 +1,15 @@
-import { useState } from "react"
+import { useState } from "react";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useLocation } from "react-router";
 import Typography from '@mui/material/Typography';
-import {DropMenu} from "./DropMenu";
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import { DropMenu } from "./DropMenu";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export const NavBar = () => {
-
-    const location = useLocation();
-    const actualLocation = location.pathname;
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -35,11 +34,41 @@ export const NavBar = () => {
                 >
                     <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" component="span" sx={{ flexGrow: 1 }}>
+                <Typography 
+                    variant="h6" 
+                    component="span" 
+                    sx={{ 
+                        flexGrow: 1, 
+                        fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' } 
+                    }}
+                >
                     CROWDFUNDING
                 </Typography>
-                <DropMenu anchorEl={anchorEl} open={open} handleMenuClose={handleMenuClose}/>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Typography 
+                        variant="h6" 
+                        component="span" 
+                        sx={{ 
+                            mr: 3, 
+                            fontSize: { xs: '0.875rem', sm: '1rem', md: '1.25rem' } 
+                        }}
+                    >
+                        USER123
+                    </Typography>
+                    <Button 
+                        color="inherit" 
+                        startIcon={<LogoutIcon />} 
+                        sx={{ 
+                            mb: 0.2, 
+                            fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' }, 
+                            width: { xs: '5rem', sm: '12rem'}
+                        }}
+                    >
+                        Cerrar sesión
+                    </Button>
+                </Box>
+                <DropMenu anchorEl={anchorEl} open={open} handleMenuClose={handleMenuClose} />
             </Toolbar>
         </AppBar>
-    )
+    );
 }
