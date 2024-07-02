@@ -22,7 +22,6 @@ const postsFake = [
 const POSTS_PER_PAGE = 6;
 
 export const PaginatedPosts = ({ posts = [], resultados }) => {
-  console.log(resultados)
   const [page, setPage] = useState(1);
   const count = Math.ceil(posts.length / POSTS_PER_PAGE);
 

@@ -36,7 +36,7 @@ export const Buscar = () => {
   return (
     <Container sx={{ my: 5, px: { xs: 2, sm: 3, md: 4 }, maxWidth: 'lg' }}>
         <FilterPosts onFilter={handleFilter} />
-        <PaginatedPosts posts={posts ? posts : []} />
+        <PaginatedPosts resultados={posts ? posts : []} />
     </Container>
   )
 }

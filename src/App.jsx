@@ -11,11 +11,9 @@ import { Home } from './pages/inicio/Home.jsx'
 import { ElegirCategoria } from './pages/categorias/ElegirCategoria.jsx'
 import { VistaProyecto } from './pages/vista/VistaProyecto.jsx'
 import { Recarga } from './pages/recargar/Recarga.jsx'
-import { PrivateRoute } from './components/PrivateRoute/PrivateRoute.jsx';
 import './App.css'
 
 function App() {
-  const isAuthenticated = localStorage.getItem('token') ? true : false;
   return (
     <>
       <Routes>
@@ -23,15 +21,13 @@ function App() {
         <Route path='/ingresar' element={ <Ingresar /> } />
         <Route path='/elegir-categoria' element={ <ElegirCategoria /> } />
         <Route path='/' element={ <Main /> } />
-        <Route path="/main" element={ <PrivateRoute isAuthenticated={isAuthenticated} /> }>
-          <Route path='/main' element={ <RecorderLayout /> }>
-            <Route path='/main/buscar' element={ <Buscar /> }/>
-            <Route path='/main/crear' element={ <CrearProyecto /> }/>
-            <Route path='/main/inicio' element={ <Home /> }/>
-            <Route path='/main/project/:idProject' element={ <VistaProyecto /> }/>
-            <Route path='/main/recargar' element={ <Recarga/> }/>
-            <Route path='/main/favoritos' element={ <Favoritos/> }/>
-          </Route>
+        <Route path='/main' element={ <RecorderLayout /> }>
+          <Route path='/main/buscar' element={ <Buscar /> }/>
+          <Route path='/main/crear' element={ <CrearProyecto /> }/>
+          <Route path='/main/inicio' element={ <Home /> }/>
+          <Route path='/main/project/:idProject' element={ <VistaProyecto /> }/>
+          <Route path='/main/recargar' element={ <Recarga/> }/>
+          <Route path='/main/favoritos' element={ <Favoritos/> }/>
         </Route>
       </Routes>
     </>
