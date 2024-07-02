@@ -1,32 +1,24 @@
 import { TextField, Button, Container, Box, Typography} from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 
 export const Ingresar = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [loginData, setLoginData] = useState(null)
-  const API_URL = 'http://127.0.0.1:5000/login'
+  const [isLogin, setIsLogin] = useState(false)
   const navigate = useNavigate();
 
-  const { data, loading, error } = useFetch(loginData ? API_URL : null, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(loginData)
-  })
-
   useEffect(() => {
-    if (data) {
-      localStorage.setItem('token', data.token)
+    if (isLogin) {
+      const token = localStorage.getItem('token')
       const API = 'http://127.0.0.1:5000/user/first/login'
       fetch(API, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${data.token}`
+          'Authorization': `Bearer ${token}`
         }
       })
       .then(response => {
@@ -46,10 +38,34 @@ export const Ingresar = () => {
         console.error('There was a problem with the fetch operation:', error);
       })
     }
-  }, [data])
+  }, [isLogin])
 
   const handleLogin = handleSubmit((formData) => {
-    setLoginData(formData)
+    const API_LOGIN = 'http://127.0.0.1:5000/login'
+    fetch(API_LOGIN, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => {
+      if (response.status === 401) {
+        alert('Usuario o contraseña incorrectos')
+        throw new Error('Usuario o contraseña incorrectos')
+      }
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
+      }
+      return response.json()
+    })
+    .then(responseData => {
+      localStorage.setItem('token', responseData.token)
+      setIsLogin(true)
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    })
   })
 
   return (

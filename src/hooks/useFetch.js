@@ -23,6 +23,7 @@ export const useFetch = (url, options) => {
       }
     }
     if (url) {
+      console.log(url)
       fetchData()
     }
   }, [url])
