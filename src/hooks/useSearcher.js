@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export const useFetch = (url, options) => {
+export const useSearcher = (url, options) => {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -25,7 +25,7 @@ export const useFetch = (url, options) => {
     if (url) {
       fetchData()
     }
-  }, [url])
+  }, [url, options])
 
   return {
     data, loading, error

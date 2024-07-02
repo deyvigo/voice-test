@@ -23,7 +23,7 @@ function App() {
         <Route path='/main/buscar' element={ <Buscar /> }/>
         <Route path='/main/crear' element={ <CrearProyecto /> }/>
         <Route path='/main/inicio' element={ <Home /> }/>
-        <Route path='/main/pruebavista' element={ <VistaProyecto /> }/>
+        <Route path='/main/pruebavista' element={ <VistaProyecto /> }/> {/*useParams()*/}
         <Route path='/main/recargar' element={ <Recarga/> }/>
       </Route>
     </Routes>
