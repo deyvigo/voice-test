@@ -17,8 +17,6 @@ export const Home = () => {
     }
   })
 
-  console.log(userData)
-
   useEffect(() => {
     const tok = localStorage.getItem('token')
     setToken(tok)

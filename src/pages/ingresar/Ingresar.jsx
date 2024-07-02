@@ -61,6 +61,7 @@ export const Ingresar = () => {
     })
     .then(responseData => {
       localStorage.setItem('token', responseData.token)
+      localStorage.setItem('name', responseData.name)
       setIsLogin(true)
     })
     .catch(error => {

@@ -11,6 +11,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 export const NavBar = () => {
     const [anchorEl, setAnchorEl] = useState(null);
+    const name = localStorage.getItem('name');
     const open = Boolean(anchorEl);
 
     const handleMenuOpen = (event) => {
@@ -53,7 +54,7 @@ export const NavBar = () => {
                             fontSize: { xs: '0.875rem', sm: '1rem', md: '1.25rem' } 
                         }}
                     >
-                        USER123
+                        { name ? name : '' }
                     </Typography>
                     <Button 
                         color="inherit" 
