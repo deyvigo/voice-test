@@ -13,12 +13,12 @@ export const PayStepper = () => {
             <Stepper alternativeLabel sx={{ mt: 4 }}>
                 <Step>
                     <StepLabel>
-                        Ingresa una cantidad a pagar en S/
+                        Elije una cantidad a pagar
                     </StepLabel>
                 </Step>
                 <Step>
                     <StepLabel>
-                        Presiona el boton recargar
+                        Presiona el boton con el precio de la moneda
                     </StepLabel>
                 </Step>
                 <Step>

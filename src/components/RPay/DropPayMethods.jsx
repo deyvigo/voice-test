@@ -10,12 +10,7 @@ import PlinQr from '../../assets/PlinQr.png';
 import YapeQr from '../../assets/YapeQr.png';
 import Button from '@mui/material/Button';
 
-export const DropPayMethods = ({openPayMethods, setOpenPayMethods, setAmount}) => {
-
-    const handlePay = () => {
-        setAmount('');
-        setOpenPayMethods(false);
-    }
+export const DropPayMethods = ({openPayMethods, setOpenPayMethods}) => {
 
     return (
         <Modal open={openPayMethods} onClose={() => setOpenPayMethods(false)}>
@@ -51,7 +46,7 @@ export const DropPayMethods = ({openPayMethods, setOpenPayMethods, setAmount}) =
                             </Typography>
                         </Box>
                     </Stack>
-                    <Button sx={{ m: 2 }} variant="contained" onClick={handlePay}>CONFIRMAR TRANSACCION</Button>
+                    <Button sx={{ m: 2 }} variant="contained" onClick={() => setOpenPayMethods(false)}>CONFIRMAR TRANSACCION</Button>
                 </DialogContent>
             </ModalDialog>
         </Modal>
