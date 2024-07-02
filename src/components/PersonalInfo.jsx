@@ -14,6 +14,7 @@ export const PersonalInfo = ({ name, lastName, username, createdDate, linkedin, 
   const token = localStorage.getItem('token')
   const [saved, setSaved] = useState(false)
   const [mLinkedin, setMLinkedin] = useState(false)
+  const [avatar, setAvatar] = useState('https://cdn-icons-png.flaticon.com/512/149/149071.png')
   const [bio, setBio] = useState(description ? description : '')
   const [linked, setLinked] = useState(linkedin ? linkedin : '')
   const [apiChangeBio, setApiChangeBio] = useState(null)
@@ -77,13 +78,24 @@ export const PersonalInfo = ({ name, lastName, username, createdDate, linkedin, 
     return `${day}-${month}-${year}`;
   }
 
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            setAvatar(e.target.result);
+        };
+        reader.readAsDataURL(file);
+    }
+  }
+
   return (
     <Paper sx={{ p: 3, maxWidth: 500, mx: 'auto' }}>
       <Grid container>
         <Grid item xs={12}>
           <Typography variant="h5" component="h1" gutterBottom sx={{ textAlign: 'center' }}>Información personal</Typography>
         </Grid>
-        <Grid item xs={6} display={'flex'} flexDirection={'column'} justifyContent={'center'} gap={2} >
+        <Grid item xs={6} display={'flex'} flexDirection={'column'} justifyContent={'center'} gap={4} >
           <Box>
             <Typography variant="body1" component="p"><strong>NOMBRE: </strong></Typography>
             <Typography variant="body2" component="p">{name}</Typography>
@@ -127,8 +139,21 @@ export const PersonalInfo = ({ name, lastName, username, createdDate, linkedin, 
           </Box>
         </Grid>
         <Grid item xs={6} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignContent={'center'}>
-          <Avatar sx={{ width: 150, height: 150, alignSelf: 'center' }} src="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
-          <Typography variant="body2" component="p">Descripción:</Typography>
+          <Avatar sx={{ width: 150, height: 150, alignSelf: 'center' }} src={avatar} />
+          <Button
+                variant="contained"
+                component="label"
+                sx={{ width: '100%', mt: 1 }}
+            >
+                Subir Imagen
+                <input
+                    type="file"
+                    hidden
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                />
+          </Button>
+          <Typography variant="body2" component="p" sx={{ textAlign: 'center', mt: 2 }}>Descripción:</Typography>
           <TextField sx={{ width: '100%' }} multiline rows={3} disabled={!saved} value={bio} onChange={ handleChangeBio }/>
           {
             saved ? (

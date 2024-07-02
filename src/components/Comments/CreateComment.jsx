@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import { useFetch } from '../../hooks/useFetch';
 import { API_URL } from '../../constants/api';
 
@@ -54,17 +55,20 @@ export const CreateComment = ({ idProject, onComment }) => {
     <Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Avatar src="https://mui.com/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} />
-        <TextField
-          sx={{ width: '100%' }}
-          label="Escribe tu comentario"
-          variant="outlined"
-          multiline
-          rows={4}
-          value={comment}
-          onChange={handleCommentChange}
-          error={error}
-          helperText={error ? 'El comentario no puede estar vacío' : ''}
-        />
+        <Box sx={{ width: '100%' }}>
+          <Typography variant="body1">Tu nombre</Typography>
+          <TextField
+            sx={{ width: '100%' }}
+            label="Escribe tu comentario"
+            variant="outlined"
+            multiline
+            rows={4}
+            value={comment}
+            onChange={handleCommentChange}
+            error={error}
+            helperText={error ? 'El comentario no puede estar vacío' : ''}
+          />
+        </Box>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
         <Button variant="contained" sx={{ px: 5 }} onClick={handlePublish}>
