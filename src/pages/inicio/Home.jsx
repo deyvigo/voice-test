@@ -43,7 +43,7 @@ export const Home = () => {
             <ActualCoins quantity={ quantity } />
           </Grid>
           <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', gap: 3, my: { xs: 2, md: 0 }, alignItems: 'center', justifyContent: 'center'}}>
-            <PopularAndMyPosts projects={ projects } />
+            <PopularAndMyPosts personalProjects={ projects } />
           </Grid>
         </Grid>
     </Container>

@@ -3,6 +3,7 @@ import Pagination from '@mui/material/Pagination';
 import Grid from '@mui/material/Grid';
 import { PostCard } from './PostCard';
 import Box from '@mui/material/Box';
+import { API_URL } from '../constants/api';
 
 
 //datos falsos
@@ -36,9 +37,9 @@ export const PaginatedPosts = ({ posts = [], resultados }) => {
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 4 }}>
       <Grid container spacing={2} justifyContent="center">
         {
-          resultados && resultados.map(({id_project, title, description}, index) => (
+          resultados && resultados.map(({ id_project, title, description, img_project }, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <PostCard idProject={id_project} title={title} description={description} image={'https://via.placeholder.com/150'} />
+              <PostCard idProject={id_project} title={title} description={description} image={`${API_URL}/img/project/${img_project}`} />
             </Grid>  
           ))
         }

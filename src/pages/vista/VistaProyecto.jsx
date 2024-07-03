@@ -26,13 +26,13 @@ export const VistaProyecto = () => {
     setToken(tok)
   }, [])
   
-  const { id_project, category, creator, description, facebook, instagram, goal, title, current_money, is_liked, comments } = dataProject?.data || {};
-  console.log(category, creator, description, facebook, instagram, goal)
+  const { id_project, category, creator, description, facebook, instagram, goal, title, current_money, is_liked, comments, img_project } = dataProject?.data || {};
 
   return (
     <Container maxWidth="md" sx={{ my: 5 }}>
       <Grid container>
         <GenericInfo
+          imgProject={img_project}
           title={title}
           description={description}
           goal={goal}

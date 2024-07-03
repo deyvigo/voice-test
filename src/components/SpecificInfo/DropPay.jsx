@@ -14,7 +14,8 @@ export const DropPay = ({ openPay, setOpenPay, idProject, onContribute }) => {
   const [apiPay, setApiPay] = useState(null);
 
   const token = localStorage.getItem('token');
-  const { data: dataPay } = useFetch(apiPay, {
+
+  const { data: dataPay, error: errorPay } = useFetch(apiPay, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -39,8 +40,12 @@ export const DropPay = ({ openPay, setOpenPay, idProject, onContribute }) => {
   useEffect(() => {
     if (dataPay) {
       onContribute(dataPay?.current_money);
+      alert('¡Gracias por tu contribución!');
     }
-  }, [dataPay])
+    if (errorPay) {
+      alert('No tienes dinero suficiente para contribuir a este proyecto.')
+    }
+  }, [dataPay, errorPay])
 
   const handleContribute = () => {
     const amountValue = parseInt(amount);
@@ -50,7 +55,6 @@ export const DropPay = ({ openPay, setOpenPay, idProject, onContribute }) => {
     } else {
       setError('');
       setApiPay(`${API_URL}/project/contribute`);
-      console.log("Contribución exitosa:", amountValue);
       setOpenPay(false); // Cerrar el modal después de contribuir
     }
   };
