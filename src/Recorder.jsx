@@ -76,12 +76,16 @@ export const Recorder = () => {
     if (!response.ok) return
 
     const responseData = await response.json()
-    setTranscription(responseData)
     if (responseData.transcription === 'no se pudo entender el audio') {
       alert("No se entendió el audio")
       return
     }
-    navigate('/main/' + responseData.transcription)
+    if (responseData.link === '/main/crear') {
+      navigate(responseData.link, { state: { title: responseData.title, description: responseData.description, goal: responseData.goal} })
+      // return
+    }
+
+    navigate(responseData.link)
   }
 
   return (

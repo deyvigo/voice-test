@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, TextField, Button, Select, MenuItem, Box, FormControl, InputLabel } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
 import { v4 as uuidv4 } from 'uuid';
 import { set, useForm } from 'react-hook-form';
@@ -8,6 +8,9 @@ import { API_URL } from '../../constants/api';
 import { useFetch } from '../../hooks/useFetch';
 
 export const CrearProyecto = () => {
+  const location = useLocation()
+  const { title, description, goal } = location.state || {};
+
   const [qr, setQr] = useState(null);
   const [qrPreview, setQrPreview] = useState(null);
   const [apiCreate, setApiCreate] = useState(null);
@@ -16,6 +19,14 @@ export const CrearProyecto = () => {
   const navigate = useNavigate()
 
   const [categories, setCategories] = useState([])
+
+  const { register, handleSubmit, setValue } = useForm();
+
+  useEffect(() => {
+    setValue('title', title)
+    setValue('description', description)
+    setValue('goal', goal)
+  }, [title, description, goal, setValue])
 
   useEffect(() => {
     fetch(`${API_URL}/get/all/category`)
@@ -41,8 +52,11 @@ export const CrearProyecto = () => {
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
+  console.log(title, description, goal)
 
-  const { register, handleSubmit } = useForm();
+  
+
+  
 
   const handleCreate = handleSubmit((data) => {
     const formData = new FormData();
@@ -103,60 +117,4 @@ export const CrearProyecto = () => {
   );
 };
 
-export default CrearProyecto;
-
-{/* <form onSubmit={() => { console.log('Hola') }}>
-        <TextField
-          label="Nombre proyecto"
-          value={nombreProyecto}
-          onChange={(event) => setNombreProyecto(event.target.value)}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Información bancaria"
-          value={informacionBancaria}
-          onChange={(event) => setInformacionBancaria(event.target.value)}
-          fullWidth
-          margin="normal"
-        />
-        <Select
-          defaultValue={''}
-          label="Categoria"
-          value={sector}
-          onChange={(event) => setSector(event.target.value)}
-          fullWidth
-          margin="normal"
-        >
-          <MenuItem value="tecnologia">Tecnología</MenuItem>
-        </Select>
-        <div {...getRootProps()}>
-          <input {...getInputProps()} />
-          <p>Arrastra y suelta una imagen para el QR aquí, o haz clic para seleccionar una imagen</p>
-        </div>
-        {qr && <img src={qr} alt="QR" style={{ maxWidth: '100%', marginTop: '10px' }} />}
-        <TextField
-          label="Descripción"
-          value={descripcion}
-          onChange={(event) => setDescripcion(event.target.value)}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Meta"
-          value={meta}
-          onChange={(event) => setMeta(event.target.value)}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Redes"
-          value={redes}
-          onChange={(event) => setRedes(event.target.value)}
-          fullWidth
-          margin="normal"
-        />
-        <Button type="submit" variant="contained" fullWidth margin="normal">
-          Guardar proyecto
-        </Button>
-      </form> */}
+export default CrearProyecto
