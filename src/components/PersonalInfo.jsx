@@ -5,20 +5,24 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { API_URL } from '../constants/api';
 import { useFetch } from '../hooks/useFetch';
+import { v4 as uuidv4 } from 'uuid';
 
-export const PersonalInfo = ({ name, lastName, username, createdDate, linkedin, description }) => {
+export const PersonalInfo = ({ name, lastName, username, createdDate, linkedin, description, imgUser }) => {
   const token = localStorage.getItem('token')
   const [saved, setSaved] = useState(false)
   const [mLinkedin, setMLinkedin] = useState(false)
   const [avatar, setAvatar] = useState('https://cdn-icons-png.flaticon.com/512/149/149071.png')
   const [bio, setBio] = useState(description ? description : '')
   const [linked, setLinked] = useState(linkedin ? linkedin : '')
+  const [imgProfile, setImgProfile] = useState(null)
+
   const [apiChangeBio, setApiChangeBio] = useState(null)
   const [apiChangeLinked, setApiChangeLinked] = useState(null)
+  const [apiChangeImg, setApiChangeImg] = useState(null)
 
   const { data: dataBio } = useFetch(apiChangeBio, {
     method: 'PUT',
@@ -41,6 +45,8 @@ export const PersonalInfo = ({ name, lastName, username, createdDate, linkedin, 
       linkedin: linked
     })
   })
+
+  const { data: dataImg } = useFetch(apiChangeImg?.url, apiChangeImg?.options)
 
   const saveChanges = () => {
     setSaved(!saved)
@@ -80,15 +86,34 @@ export const PersonalInfo = ({ name, lastName, username, createdDate, linkedin, 
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
+    const formatData = new FormData();
+    formatData.append('image', file, `${uuidv4()}.png`);
+    setApiChangeImg({
+      url: API_URL + '/user/update/profile/image',
+      options: {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        body: formatData
+      }
+    })
     if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            setAvatar(e.target.result);
-        };
-        reader.readAsDataURL(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setAvatar(e.target.result);
+      };
+      reader.readAsDataURL(file);
     }
   }
 
+  useEffect(() => {
+    if (imgUser) {
+      setAvatar(`${API_URL}/img/profile/${imgUser}`)
+      console.log(imgUser)
+    }
+  }, [imgUser])
+ 
   return (
     <Paper sx={{ p: 3, maxWidth: 500, mx: 'auto' }}>
       <Grid container>

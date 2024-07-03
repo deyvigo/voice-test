@@ -40,6 +40,10 @@ export const PopularAndMyPosts = ({ personalProjects }) => {
     }
   }, [dataPopular])
 
+  useEffect(() => {
+    setProjects(personalProjects);
+  }, [personalProjects]);
+
   return (
     <Paper sx={{ p: 3, width: { xs: '100%', sm: '70%' } }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

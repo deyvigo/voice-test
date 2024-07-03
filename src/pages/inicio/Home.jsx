@@ -26,13 +26,14 @@ export const Home = () => {
   //   return <div>Loading...</div>;
   // }
 
-  const { first_name, last_name, username, created, linkedin, quantity, biography, projects } = userData?.data || {};
+  const { first_name, last_name, username, created, linkedin, quantity, biography, projects, img_user } = userData?.data || {};
 
   return (
     <Container sx={{ mt: 5, px: { xs: 2, sm: 3, md: 4 }, maxWidth: 'lg' }}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', gap: 3, justifyContent: 'center' }}>
             <PersonalInfo
+              imgUser={ img_user }
               name={ first_name }
               lastName={ last_name }
               username={ username }
