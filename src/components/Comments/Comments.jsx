@@ -12,28 +12,28 @@ const comments = [
     comment: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. ' +
       'Tempora, similique facilis praesentium laboriosam maiores ' +
       'officia sunt blanditiis deserunt sed eveniet neque, eius ' +
-      'voluptate molestiae fugiat ipsa rerum, id quos ea.'
+      'voluptate molestiae fugiat ipsa rerum, id quos ea.',
   },
   {
     avatar: 'https://mui.com/static/images/avatar/2.jpg',
     comment: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. ' +
       'Tempora, similique facilis praesentium laboriosam maiores ' +
       'officia sunt blanditiis deserunt sed eveniet neque, eius ' +
-      'voluptate molestiae fugiat ipsa rerum, id quos ea.'
+      'voluptate molestiae fugiat ipsa rerum, id quos ea.',
   },
   {
     avatar: 'https://mui.com/static/images/avatar/3.jpg',
     comment: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. ' +
       'Tempora, similique facilis praesentium laboriosam maiores ' +
       'officia sunt blanditiis deserunt sed eveniet neque, eius ' +
-      'voluptate molestiae fugiat ipsa rerum, id quos ea.'
+      'voluptate molestiae fugiat ipsa rerum, id quos ea.',
   },
   {
     avatar: 'https://mui.com/static/images/avatar/4.jpg',
     comment: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. ' +
       'Tempora, similique facilis praesentium laboriosam maiores ' +
       'officia sunt blanditiis deserunt sed eveniet neque, eius ' +
-      'voluptate molestiae fugiat ipsa rerum, id quos ea.'
+      'voluptate molestiae fugiat ipsa rerum, id quos ea.',
   }
 ]
 
@@ -63,6 +63,7 @@ export const Comments = ({ comments, idProject }) => {
           <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Avatar src={'https://mui.com/static/images/avatar/3.jpg'} sx={{ width: 50, height: 50 }} />
             <Paper sx={{ p: 3 }}>
+              <Typography variant="body1">nombre</Typography>
               <Typography variant="body2">{comment.comment}</Typography>
             </Paper>
           </Box>

@@ -22,9 +22,9 @@ export const Home = () => {
     setToken(tok)
   }, [])
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
   const { first_name, last_name, username, created, linkedin, quantity, biography, projects } = userData?.data || {};
 
