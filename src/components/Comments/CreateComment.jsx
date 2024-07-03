@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { useFetch } from '../../hooks/useFetch';
 import { API_URL } from '../../constants/api';
 
-export const CreateComment = ({ idProject, onComment }) => {
+export const CreateComment = ({ name, idProject, onComment }) => {
   const token = localStorage.getItem('token');
   const [comment, setComment] = useState('');
   const [error, setError] = useState(false);
@@ -54,9 +54,9 @@ export const CreateComment = ({ idProject, onComment }) => {
   return (
     <Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Avatar src="https://mui.com/static/images/avatar/1.jpg" sx={{ width: 50, height: 50 }} />
+        <Avatar src="https://mui.com/static/images/avatar/3.jpg" sx={{ width: 50, height: 50 }} />
         <Box sx={{ width: '100%' }}>
-          <Typography variant="body1">Tu nombre</Typography>
+          <Typography variant="body1">{name}</Typography>
           <TextField
             sx={{ width: '100%' }}
             label="Escribe tu comentario"

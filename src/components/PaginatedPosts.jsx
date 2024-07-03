@@ -39,7 +39,7 @@ export const PaginatedPosts = ({ posts = [], resultados }) => {
         {
           resultados && resultados.map(({ id_project, title, description, img_project }, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <PostCard idProject={id_project} title={title} description={description} image={`${API_URL}/img/project/${img_project}`} />
+              <PostCard idProject={id_project} title={title} description={description} image={img_project ? `${API_URL}/img/project/${img_project}` : 'https://via.placeholder.com/150'} />
             </Grid>  
           ))
         }

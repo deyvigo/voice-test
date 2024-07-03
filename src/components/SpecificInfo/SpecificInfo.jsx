@@ -7,7 +7,7 @@ import { DropPay } from './DropPay';
 import { useEffect, useState } from 'react';
 import { DropPerfil } from './DropPerfil';
 
-export const SpecificInfo = ({ goal, current, firstName, lastName, bio, linkedin, idProject }) => {
+export const SpecificInfo = ({ goal, current, firstName, lastName, bio, linkedin, idProject, imgProfile }) => {
 
   const [currentMoney, setCurrentMoney] = useState(current)
   const [openPerfil, setOpenPerfil] = useState(false)
@@ -71,6 +71,7 @@ export const SpecificInfo = ({ goal, current, firstName, lastName, bio, linkedin
       <DropPerfil
         openPerfil={openPerfil}
         setOpenPerfil={setOpenPerfil}
+        imgProfile={imgProfile}
         linkedin={linkedin}
         bio={bio}
         fullName={fullName}

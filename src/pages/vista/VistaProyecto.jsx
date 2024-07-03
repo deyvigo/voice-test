@@ -43,6 +43,7 @@ export const VistaProyecto = () => {
         <SpecificInfo
           goal={goal}
           current={current_money}
+          imgProfile={creator?.img_user}
           firstName={creator?.first_name}
           lastName={creator?.last_name}
           bio={creator?.biography}
@@ -55,6 +56,7 @@ export const VistaProyecto = () => {
         idProject={id_project}
       />
       <Comments
+        img={creator?.img_user}
         comments={comments ? comments : []}
         idProject={id_project}
       />

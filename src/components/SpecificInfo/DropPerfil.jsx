@@ -8,8 +8,16 @@ import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { useEffect } from 'react';
+import { API_URL } from '../../constants/api';
 
-export const DropPerfil = ({ openPerfil, setOpenPerfil, fullName, bio, linkedin }) => {
+export const DropPerfil = ({ imgProfile, openPerfil, setOpenPerfil, fullName, bio, linkedin }) => {
+  // const [avatar, setAvatar] = useState('https://mui.com/static/images/avatar/1.jpg')
+  // useEffect(() => {
+  //   if (!imgProfile) {
+  //     setAvatar(imgProfile)
+  //   }
+  // }, [imgProfile])
   return (
     <Modal open={openPerfil} onClose={() => setOpenPerfil(false)}>
       <ModalDialog>
@@ -24,7 +32,7 @@ export const DropPerfil = ({ openPerfil, setOpenPerfil, fullName, bio, linkedin 
               <Typography variant="h6" component="h1">
                 { fullName }
               </Typography>
-              <Avatar src="https://mui.com/static/images/avatar/1.jpg" sx={{ width: 100, height: 100 }} />
+              <Avatar src={imgProfile ? `${API_URL}/img/profile/${imgProfile}` : "https://mui.com/static/images/avatar/1.jpg"} sx={{ width: 100, height: 100 }} />
             </Box>
             <Box>
               <Typography variant="h6" component="h1">

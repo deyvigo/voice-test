@@ -5,6 +5,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useEffect, useState } from "react";
+import { API_URL } from "../../constants/api";
 
 const comments = [
   {
@@ -37,7 +38,7 @@ const comments = [
   }
 ]
 
-export const Comments = ({ comments, idProject }) => {
+export const Comments = ({ img, comments, idProject }) => {
   const [commentsArray, setCommentsArray] = useState(comments ? comments : [])
 
   const handleComment = (comment) => {
@@ -55,16 +56,17 @@ export const Comments = ({ comments, idProject }) => {
       mt={3}
     >
       <CreateComment
+        name={localStorage.getItem('name')}
         idProject={idProject}
         onComment={handleComment}
       />
       {
-        commentsArray.map((comment, index) => (
+        commentsArray.map(({ comment, user }, index) => (
           <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Avatar src={'https://mui.com/static/images/avatar/3.jpg'} sx={{ width: 50, height: 50 }} />
+            <Avatar src={ user?.img_user ? `${API_URL}/img/profile/${user?.img_user}` : 'https://mui.com/static/images/avatar/3.jpg'} sx={{ width: 50, height: 50 }} />
             <Paper sx={{ p: 3 }}>
-              <Typography variant="body1">nombre</Typography>
-              <Typography variant="body2">{comment.comment}</Typography>
+              <Typography variant="body1">{ `${user?.first_name + ' ' + user?.last_name}`}</Typography>
+              <Typography variant="body2">{comment}</Typography>
             </Paper>
           </Box>
         ))

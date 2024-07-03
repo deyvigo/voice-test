@@ -31,8 +31,8 @@ export const DropMenu = ({ anchorEl, open, handleMenuClose }) => {
             <MenuItem onClick={handleMenuClose} component={Link} to="/main/buscar">
                 <SearchIcon /> Buscar proyecto
             </MenuItem>
-            <MenuItem onClick={handleMenuClose} component={Link} to="/main/favoritos">
-                <FavoriteIcon /> Favoritos
+            <MenuItem onClick={handleMenuClose} component={Link} to="/main/recomendados">
+                <FavoriteIcon /> Recomendados
             </MenuItem>
             <MenuItem onClick={handleMenuClose} component={Link} to="/main/recargar">
                 <PaidIcon /> Recargar

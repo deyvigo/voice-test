@@ -27,7 +27,7 @@ function App() {
           <Route path='/main/inicio' element={ <Home /> }/>
           <Route path='/main/project/:idProject' element={ <VistaProyecto /> }/>
           <Route path='/main/recargar' element={ <Recarga/> }/>
-          <Route path='/main/favoritos' element={ <Favoritos/> }/>
+          <Route path='/main/recomendados' element={ <Favoritos/> }/>
         </Route>
       </Routes>
     </>
